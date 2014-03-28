@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" 
+	xmlns="http://java.sun.com/xml/ns/javaee" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+	<!-- snow framework -->
+  <servlet>
+  	<servlet-name>snow-action</servlet-name>
+  	<servlet-class>org.snow.core.DispatcherServlet</servlet-class>
+  	<init-param>
+  		<param-name>base</param-name>
+  		<param-value>org.snow.action</param-value>
+  	</init-param>
+  	<init-param>
+  		<param-name>charset</param-name>
+  		<param-value>utf-8</param-value>
+  	</init-param>
+  	<init-param>
+  		<param-name>actionHandles</param-name>
+  		<param-value>org.snow.plugin.spring.SpringHandle,org.snow.plugin.json.JsonHandler,org.snow.plugin.file.DownloadHandler</param-value>
+  	</init-param>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>snow-action</servlet-name>
+  	<url-pattern>*.a</url-pattern>
+  </servlet-mapping>
+  
+  <!-- spring framework -->
+	<servlet>
+	  <servlet-name>context</servlet-name>
+	  <servlet-class>
+	  org.springframework.web.context.ContextLoaderServlet
+	  </servlet-class>
+	  <load-on-startup>1</load-on-startup>
+	</servlet>
+	<context-param>
+	    <param-name>contextConfigLocation</param-name>
+	   <param-value>/WEB-INF/bean.xml</param-value>
+	</context-param>
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+</web-app>
